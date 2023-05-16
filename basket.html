@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket - Shopping Website</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="script.js"></script>
+    <script src="script1.js"></script>
+    <script src="script3.js"></script>
+</head>
+<body>
+    <header>
+        <img src="Light.png" alt="banner">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="basket.html">Basket</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Products</h2>
+        <table id="basket-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th></th> 
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button onclick="clearBasket()">Clear Basket</button>
+    </main>
+    <script>
+		var items = localStorage.getItem('basketItems');
+	  
+		if (items) {
+		  items = JSON.parse(items);
+	  
+		  var table = document.getElementById('basket-table');
+		  var tbody = table.getElementsByTagName('tbody')[0];
+		  var totalPrice = 0;
+	  
+		  for (var i = 0; i < items.length; i++) {
+			var item = items[i];
+	  
+			var row = tbody.insertRow();
+	  
+			var nameCell = row.insertCell();
+			var descriptionCell = row.insertCell();
+			var priceCell = row.insertCell();
+			var imageCell = row.insertCell();
+			var removeCell = row.insertCell();
+	  
+			nameCell.textContent = item.name;
+			descriptionCell.textContent = item.description;
+			priceCell.textContent = item.price;
+			totalPrice += parseFloat(item.price.replace('£', ''));
+	  
+			var image = document.createElement('img');
+			image.src = item.imageSrc;
+	  
+			imageCell.appendChild(image);
+	  
+			var removeButton = document.createElement('button');
+			removeButton.textContent = 'Remove';
+			removeButton.setAttribute('data-index', i);
+			removeButton.addEventListener('click', function (event) {
+			  var index = parseInt(event.target.getAttribute('data-index'));
+			  var removedItem = items.splice(index, 1)[0];
+			  localStorage.setItem('basketItems', JSON.stringify(items));
+			  table.deleteRow(index + 1);
+			  updateTotalPrice();
+			});
+	  
+			removeCell.appendChild(removeButton);
+		  }
+	  
+		  var totalRow = table.insertRow();
+		  var totalLabelCell = totalRow.insertCell();
+		  totalLabelCell.textContent = 'Total Price:';
+		  totalLabelCell.colSpan = 1;
+		  var totalPriceCell = totalRow.insertCell();
+		  totalPriceCell.textContent = '£' + totalPrice.toFixed(2);
+		}
+	  
+		function updateTotalPrice() {
+		  var totalPrice = items.reduce(function (total, item) {
+			return total + parseFloat(item.price.replace('£', ''));
+		  }, 0);
+		  totalPriceCell.textContent = '£' + totalPrice.toFixed(2);
+	  
+		  localStorage.setItem('basketItems', JSON.stringify(items)); // Update the items in local storage
+		}
+	  
+		function clearBasket() {
+		  localStorage.removeItem('basketItems');
+		  tbody.innerHTML = '';
+		  table.deleteRow(-1);
+		  updateTotalPrice();
+		}
+	  </script>	  
+</body>
+</html>

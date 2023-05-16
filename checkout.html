@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="script.js"></script>
+		<script src="script1.js"></script>
+		<script src="script2.js"></script>
+		<title>Light Studio</title>
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<style>
+		  label {
+			display: block;
+			margin-bottom: 10px;
+		  }
+		  input[type="text"], input[type="password"], input[type="number"] {
+			width: 100%;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-bottom: 10px;
+		  }
+		  input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		  }
+		  input[type="submit"]:hover {
+			background-color: #45a049;
+		  }
+		  .error {
+			color: red;
+			font-weight: bold;
+			margin-bottom: 10px;
+		  }
+		</style>
+	  </head>
+<body>
+	<header>
+		<img src="Light.png" alt="banner">
+		<nav>
+			<ul>
+				<li><a href="home.html">Home</a></li>
+				<li><a href="products.html">Products</a></li>
+				<li><a href="basket.html">Basket</a></li>
+				<li><a href="checkout.html">Checkout</a></li>
+				<li><a href="account.html">Account</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<main>
+		<h1>Checkout</h1>
+		<div class="cart-items">
+            <h2>Cart Items</h2>
+			<ul id="cart-items-list"></ul>
+        </div>
+  		<form id="payment-form">
+    		<label for="card-number">Credit Card Number:</label>
+			<span class="help-message">Please enter a valid 16-digit credit card number</span>
+			<input type="text" id="card-number" name="card-number" placeholder="1234-5678-9012-3456" required pattern="\d{4}([ -]?\d{4}){3}" title="Please enter a valid 16-digit credit card number">
+
+    		<label for="card-name">Name on Card:</label>
+			<span class="help-message">Please enter the name as it appears on the card</span>
+    		<input type="text" id="card-name" name="card-name" placeholder="Henry Chan" required>
+
+    		<label for="expiry-month">Expiry Month:</label>
+			<span class="help-message">Please enter the expiry month of your card (1-12)</span>
+    		<input type="number" id="expiry-month" name="expiry-month" placeholder="MM" min="1" max="12" required>
+
+    		<label for="expiry-year">Expiry Year:</label>
+			<span class="help-message">Please enter the expiry year of your card </span>
+			<input type="number" id="expiry-year" name="expiry-year" placeholder="YYYY" min="2023" max="2030" required>
+
+    		<label for="cvv">CVV:</label>
+			<span class="help-message">Please enter the 3 digit CVV code on the back of your card</span>
+    		<input type="password" id="cvv" name="cvv" placeholder="***" minlength="3" maxlength="3" required>
+
+    		<label for="billing-address">Billing Address:</label>
+			<span class="help-message">Please enter your billing address</span>
+    		<input type="text" id="billing-address" name="billing-address" placeholder="Queens Street, Cardiff" required>
+
+    		<label for="Post Code">Post Code:</label>
+			<span class="help-message">Please enter your Post Code</span>
+			<input type="text" id="post-code" name="post-code" placeholder="CF** ***" required>
+
+    		<label for="total-price">Total Price:</label>
+            <input type="text" id="total-price" name="total-price" value= "" readonly>
+			<button type="submit" id="submit-button" onclick="validateForm()">Submit</button>
+		</form>
+		<script>
+			// Get the basket items from local storage
+			var items = localStorage.getItem('basketItems');
+		
+			if (items) {
+				items = JSON.parse(items);
+		
+				var cartItemsList = document.getElementById('cart-items-list');
+		
+				for (var i = 0; i < items.length; i++) {
+					var listItem = document.createElement('li');
+					listItem.textContent = items[i].name;
+					cartItemsList.appendChild(listItem);
+				}
+		
+				// Calculate the total price
+				var totalPrice = items.reduce(function (total, item) {
+					return total + parseFloat(item.price.replace('£', ''));
+				}, 0);
+		
+				// Format the total price with 2 decimal places
+				var formattedPrice = '£' + totalPrice.toFixed(2);
+		
+				// Set the value of the total price input field
+				document.getElementById('total-price').value = formattedPrice;
+			}
+		
+		</script>
+	</main>
+	</body>
+	</html>

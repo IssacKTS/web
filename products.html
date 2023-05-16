@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <script src="script1.js"></script>
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <header>
+		<img src="Light.png" alt="banner">
+        <nav>
+			<ul>
+				<li><a href="home.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+				<li><a href="basket.html">Basket</a></li>
+				<li><a href="checkout.html">Checkout</a></li>
+				<li><a href="account.html">Account</a></li>
+			</ul>
+		</nav>
+    </header>
+
+    <main>
+        <div class="sorting-options">
+            <label for="sort-option">Sort by:</label>
+            <select id="sort-option" onchange="sortItems(this.value)">
+              <option value="">-- Select --</option>
+              <option value="priceLowToHigh">Price: Low to High</option>
+              <option value="priceHighToLow">Price: High to Low</option>
+            </select>
+          </div>    
+        <section id="featured-products">
+            <h2>All Products</h2>
+            <div class="product">
+                <img src="light_strip.jpeg" alt="Product 1">
+                <h3>LED Strip Lights</h3>
+                <p class="description">These are flexible strips of LED lights that can be used to decorate homes, businesses, or outdoor spaces. They are energy-efficient and can be controlled remotely to change color, brightness, and patterns.</p>
+                <p class="price">£39.99</p>
+                <p class="impact">Environmental Impact: Mid</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div>
+            <div class="product">
+                <img src="light_panels.jpeg" alt="Product 2">
+                <h3>Light Panels</h3>
+                <p class="description">These are flat, rectangular panels that emit a soft, diffused light. They can be used as a stylish alternative to traditional overhead lighting or as a decorative element in homes or businesses. Light panels can be customized to display different patterns or images.</p>
+                <p class="price">£59.99</p>
+                <p class="impact">Environmental Impact: High</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div>
+            <div class="product">
+                <img src="night_light.jpeg" alt="Product 3">
+                <h3>Motion-Activated Night Lights</h3>
+                <p class="description">These are small, battery-operated lights that automatically turn on when they detect motion. They can be used as a safety feature in homes or as a decorative element in businesses.</p>
+                <p class="price">£24.99</p>
+                <p class="impact">Environmental Impact: Low</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div>
+            <div class="product">
+                <img src="garden_light.jpeg" alt="Product 4">
+                <h3>Solar-Powered Garden Lights</h3>
+                <p class="description">These are outdoor lights that are powered by the sun. They can be used to illuminate gardens, walkways, or outdoor seating areas. Solar-powered lights are environmentally friendly and can help reduce energy costs.</p>
+                <p class="price">£49.99</p>
+                <p class="impact">Environmental Impact: Mid</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div>
+            <div class="product">
+                <img src="bulbs.jpg" alt="Product 5">
+                <h3>Solar-Powered LED Bulbs</h3>
+                <p class="description">These LED bulbs are powered by solar energy, making them energy-efficient and environmentally friendly. They provide bright and long-lasting illumination while reducing electricity consumption. They are suitable for both indoor and outdoor use, and their sleek design adds a modern touch to any space.</p>
+                <p class="price">£25.99 per bulb</p>
+                <p class="impact">Environmental Impact: Mid</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div><div class="product">
+                <img src="switch.jpg" alt="Product 6">
+                <h3>Smart Light Switches</h3>
+                <p class="description">These smart light switches allow users to control their lighting fixtures remotely using a smartphone app or voice commands. They offer features like dimming, scheduling, and integration with smart home systems. The switches are easy to install and compatible with standard electrical wiring.</p>
+                <p class="price">£39.99 per switch</p>
+                <p class="impact">Environmental Impact: Low</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div><div class="product">
+                <img src="wireless.jpg" alt="Product 7">
+                <h3>LED Desk Lamp with Wireless Charging</h3>
+                <p class="description">This LED desk lamp combines lighting with the convenience of wireless charging. It provides adjustable brightness levels, color temperature options, and a flexible arm for optimal lighting. The wireless charging pad on the lamp's base is compatible with Qi-enabled devices, eliminating the need for tangled cords.</p>
+                <p class="price">£49.99 per lamp</p>
+                <p class="impact">Environmental Impact: High</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div><div class="product">
+                <img src="security.jpg" alt="Product 8">
+                <h3>Motion-Activated Outdoor Security Lights</h3>
+                <p class="description">These outdoor security lights utilize motion sensors to detect movement and automatically illuminate the surroundings. They offer adjustable sensitivity, duration, and lighting modes. The lights are weatherproof and can enhance safety by providing visibility and deterring potential intruders.</p>
+                <p class="price">£34.99 per light</p>
+                <p class="impact">Environmental Impact: Mid</p>
+                <button class="add-to-basket" onclick="addToBasket(this)">Add to Basket</button>
+            </div>
